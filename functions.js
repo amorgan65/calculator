@@ -1,3 +1,21 @@
+//set buttons to have listener event?
+let num1 = ''
+let num2 = ''
+let operator = null
+
+
+constant numButtons = document.querySelectorAll('[data-value]')
+constant equalButton = document.getElementById('equals')
+constant subButton = document.getElementById('subtract')
+constant addButton = document.getElementById('add')
+constant multButton = document.getElementById('multiply')
+constant divButton = document.getElementById('divide')
+constant clearButton = document.getElementById('clear')
+
+equalButton.addEventListener('click', solve)
+clearButton.addEventListener('click', clear)
+
+
 function add(num1, num2) {
     return num1 + num2;
 }
@@ -15,14 +33,17 @@ function divide(num1, num2) {
 }
 
 function operate(operator, num1, num2) {
+    var n1 = Number(num1)
+    var n2 = Number(num2)
+
     if (operator == "/") {
-        return divide(num1, num2);
+        return divide(n1, n2);
     } else if (operator == "*") {
-        return multiply(num1, num2);
+        return multiply(n1, n2);
     } else if (operator == "-") {
-        return subtract(num1, num2);
+        return subtract(n1, n2);
     } else if (operator == "+") {
-        return add(num1, num2)
+        return add(n1, n2)
     }
     return null;
 }

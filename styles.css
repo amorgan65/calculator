@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: x-large;
 }
 
 .display {
@@ -23,7 +24,8 @@
     background: white;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: right;
     text-align: right;
     flex-direction: row-reverse;
+    font-size: xxx-large;
 }
