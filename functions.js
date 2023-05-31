@@ -3,6 +3,7 @@ let num1 = ''
 let num2 = ''
 let operator = null
 
+let display = 0
 
 constant numButtons = document.querySelectorAll('[data-value]')
 constant equalButton = document.getElementById('equals')
@@ -15,6 +16,16 @@ constant clearButton = document.getElementById('clear')
 equalButton.addEventListener('click', solve)
 clearButton.addEventListener('click', clear)
 
+//TODO create listener events for operator buttons
+
+//TODO create listener events for number buttons
+
+//TODO create listener event for display? make it refresh whenever num, clear, or equal is pressed
+
+
+//TODO create function for what to do when number button is clicked?
+
+//TODO create function for what to do when operator button is clicked?
 
 function add(num1, num2) {
     return num1 + num2;
@@ -48,9 +59,28 @@ function operate(operator, num1, num2) {
     return null;
 }
 
-function clear() {
-    // reset
+function solve() {
+    let result = operate(operator, num1, num2);
+    clear();
+    //TODO num1 = CONVERT STRING TO INT!!!
+    return result;
 }
+
+function clear() {
+    //TODO CLEAR BUTTON, erases all stored values??
+    num1 = ''
+    num2 = ''
+    operator = null
+    resetDisplay();
+}
+
+function resetDisplay() {
+    //TODO gets rid of stored value for text display, sets back to 0 or null?
+    display = 0;
+}
+
+
+
 
 //on button click, one of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], update display with new number.
 // first number, then just add to right of it. so treat display nums like appending string
