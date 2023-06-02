@@ -3,15 +3,23 @@ let num1 = ''
 let num2 = ''
 let operator = null
 
-let display = 0
+let currNumber = 0
 
-constant numButtons = document.querySelectorAll('[data-value]')
-constant equalButton = document.getElementById('equals')
-constant subButton = document.getElementById('subtract')
-constant addButton = document.getElementById('add')
-constant multButton = document.getElementById('multiply')
-constant divButton = document.getElementById('divide')
-constant clearButton = document.getElementById('clear')
+const numButtons = document.querySelectorAll('[data-value]')
+const equalButton = document.getElementById('equals')
+const subButton = document.getElementById('subtract')
+const addButton = document.getElementById('add')
+const multButton = document.getElementById('multiply')
+const divButton = document.getElementById('divide')
+const clearButton = document.getElementById('clear')
+
+var oneButton = document.getElementById('1')
+var display = document.getElementById('display')
+
+//TODO Generalize this function to use ID of whichever button is of class number? to find what number it actually is
+function numOnePressed() {
+    display.innerText = currNumber + 1
+}
 
 equalButton.addEventListener('click', solve)
 clearButton.addEventListener('click', clear)
