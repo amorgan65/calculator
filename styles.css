@@ -29,3 +29,7 @@
     flex-direction: row-reverse;
     font-size: xxx-large;
 }
+
+#clear {
+  color: red;
+}
