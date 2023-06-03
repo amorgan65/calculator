@@ -12,7 +12,6 @@ const addButton = document.getElementById('add')
 const multButton = document.getElementById('multiply')
 const divButton = document.getElementById('divide')
 
-
 var clearButton = document.getElementById('clear')
 var oneButton = document.getElementById('1')
 var display = document.getElementById('display')
@@ -21,10 +20,10 @@ var display = document.getElementById('display')
 function numOnePressed() {
     if (currNumber == 0) {
         currNumber = '1' //TODO generalize, change to string value of whatever number button being pressed
-        display.innerText = currNumber
+        refreshDisplay()
     } else {
         currNumber += '1' //TODO generalize, change to string value of whatever number button being pressed
-        display.innerText = currNumber
+        refreshDisplay()
     }
 }
 
@@ -37,8 +36,14 @@ function addPressed() {
 
 function clear() {
     //TODO CLEAR BUTTON, erases all stored values??
-    
+    num1 = ''
+    num2 = ''
+    operator = null
     currNumber = '0'
+    refreshDisplay()
+}
+
+function refreshDisplay() {
     display.innerText = currNumber
 }
 
@@ -55,11 +60,6 @@ equalButton.addEventListener('click', solve)
 //TODO create listener events for number buttons
 
 //TODO create listener event for display? make it refresh whenever num, clear, or equal is pressed
-
-
-//TODO create function for what to do when number button is clicked?
-
-//TODO create function for what to do when operator button is clicked?
 
 function add(num1, num2) {
     return num1 + num2;
@@ -99,15 +99,6 @@ function solve() {
     //TODO num1 = CONVERT STRING TO INT!!!
     return result;
 }
-
-/*
-function resetDisplay() {
-    //TODO gets rid of stored value for text display, sets back to 0 or null?
-    
-} */
-
-
-
 
 //on button click, one of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], update display with new number.
 // first number, then just add to right of it. so treat display nums like appending string
