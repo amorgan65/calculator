@@ -3,7 +3,7 @@ let num1 = ''
 let num2 = ''
 let operator = null
 
-let currNumber = 0
+let currNumber = '0'
 
 const numButtons = document.querySelectorAll('[data-value]')
 const equalButton = document.getElementById('equals')
@@ -18,7 +18,13 @@ var display = document.getElementById('display')
 
 //TODO Generalize this function to use ID of whichever button is of class number? to find what number it actually is
 function numOnePressed() {
-    display.innerText = currNumber + 1
+    if (currNumber == 0) {
+        currNumber = '1'
+        display.innerText = currNumber
+    } else {
+        currNumber += '1'
+        display.innerText = currNumber
+    }
 }
 
 equalButton.addEventListener('click', solve)
