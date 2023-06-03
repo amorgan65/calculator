@@ -1,9 +1,9 @@
 //set buttons to have listener event?
-let num1 = ''
-let num2 = ''
-let operator = null
+var num1 = ''
+var num2 = ''
+var operator = null
 
-let currNumber = '0'
+var currNumber = '0'
 
 const numButtons = document.querySelectorAll('[data-value]')
 const equalButton = document.getElementById('equals')
@@ -11,24 +11,44 @@ const subButton = document.getElementById('subtract')
 const addButton = document.getElementById('add')
 const multButton = document.getElementById('multiply')
 const divButton = document.getElementById('divide')
-const clearButton = document.getElementById('clear')
 
+
+var clearButton = document.getElementById('clear')
 var oneButton = document.getElementById('1')
 var display = document.getElementById('display')
 
 //TODO Generalize this function to use ID of whichever button is of class number? to find what number it actually is
 function numOnePressed() {
     if (currNumber == 0) {
-        currNumber = '1'
+        currNumber = '1' //TODO generalize, change to string value of whatever number button being pressed
         display.innerText = currNumber
     } else {
-        currNumber += '1'
+        currNumber += '1' //TODO generalize, change to string value of whatever number button being pressed
         display.innerText = currNumber
     }
 }
 
-equalButton.addEventListener('click', solve)
+//TODO generalize function to all operator buttons?
+function addPressed() {
+    num1 = currNumber 
+    currNumber = '0'
+    operator = '+' //TODO operator one of either ['/', '*', '-', '+']
+}
+
+function clear() {
+    //TODO CLEAR BUTTON, erases all stored values??
+    
+    currNumber = '0'
+    display.innerText = currNumber
+}
+
 clearButton.addEventListener('click', clear)
+
+oneButton.addEventListener('click', numOnePressed)
+
+addButton.addEventListener('click', addPressed)
+
+equalButton.addEventListener('click', solve)
 
 //TODO create listener events for operator buttons
 
@@ -80,18 +100,11 @@ function solve() {
     return result;
 }
 
-function clear() {
-    //TODO CLEAR BUTTON, erases all stored values??
-    num1 = ''
-    num2 = ''
-    operator = null
-    resetDisplay();
-}
-
+/*
 function resetDisplay() {
     //TODO gets rid of stored value for text display, sets back to 0 or null?
-    display = 0;
-}
+    
+} */
 
 
 
