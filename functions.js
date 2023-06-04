@@ -7,7 +7,8 @@ let firstTerm = true
 
 var currNumber = '0'
 
-const numButtons = document.querySelectorAll('[data-value]')
+
+var numButtons = document.querySelectorAll('button[data-value]')
 var equalButton = document.getElementById('equals')
 const subButton = document.getElementById('subtract')
 var addButton = document.getElementById('add')
@@ -15,9 +16,30 @@ const multButton = document.getElementById('multiply')
 const divButton = document.getElementById('divide')
 
 var clearButton = document.getElementById('clear')
-var oneButton = document.getElementById('1')
+//var oneButton = document.getElementById('1')
 var display = document.getElementById('display')
 
+numButtons.forEach((button) => {
+    //TODO attach listener to each?
+    button.addEventListener('click', () => numberPressed(button.getAttribute('id')))
+})
+
+function numberPressed(num) {
+    if (firstTerm == false) {
+        currNumber = '0'
+        firstTerm = true
+    }
+
+    if (currNumber == '0') {
+        currNumber = num //TODO generalize, change to string value of whatever number button being pressed
+        refreshDisplay()
+    } else {
+        currNumber += num //TODO generalize, change to string value of whatever number button being pressed
+        refreshDisplay()
+    }
+}
+
+/*
 //TODO Generalize this function to use ID of whichever button is of class number? to find what number it actually is
 function numOnePressed() {
     if (firstTerm == false) {
@@ -31,7 +53,7 @@ function numOnePressed() {
         currNumber += '1' //TODO generalize, change to string value of whatever number button being pressed
         refreshDisplay()
     }
-}
+} */
 
 //TODO generalize function to all operator buttons?
 function addPressed() {
@@ -54,8 +76,6 @@ function refreshDisplay() {
 }
 
 clearButton.addEventListener('click', clear)
-
-oneButton.addEventListener('click', numOnePressed)
 
 //TODO create listener events for number buttons
 
