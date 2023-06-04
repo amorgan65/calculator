@@ -3,12 +3,14 @@ var num1 = ''
 var num2 = ''
 var operator = null
 
+let firstTerm = true
+
 var currNumber = '0'
 
 const numButtons = document.querySelectorAll('[data-value]')
-const equalButton = document.getElementById('equals')
+var equalButton = document.getElementById('equals')
 const subButton = document.getElementById('subtract')
-const addButton = document.getElementById('add')
+var addButton = document.getElementById('add')
 const multButton = document.getElementById('multiply')
 const divButton = document.getElementById('divide')
 
@@ -18,7 +20,11 @@ var display = document.getElementById('display')
 
 //TODO Generalize this function to use ID of whichever button is of class number? to find what number it actually is
 function numOnePressed() {
-    if (currNumber == 0) {
+    if (firstTerm == false) {
+        currNumber = '0'
+    }
+
+    if (currNumber == '0') {
         currNumber = '1' //TODO generalize, change to string value of whatever number button being pressed
         refreshDisplay()
     } else {
@@ -32,10 +38,10 @@ function addPressed() {
     num1 = currNumber 
     currNumber = '0'
     operator = '+' //TODO operator one of either ['/', '*', '-', '+']
+    firstTerm = false
 }
 
 function clear() {
-    //TODO CLEAR BUTTON, erases all stored values??
     num1 = ''
     num2 = ''
     operator = null
@@ -51,53 +57,59 @@ clearButton.addEventListener('click', clear)
 
 oneButton.addEventListener('click', numOnePressed)
 
+//TODO create listener events for number buttons
+
 addButton.addEventListener('click', addPressed)
 
 equalButton.addEventListener('click', solve)
 
 //TODO create listener events for operator buttons
 
-//TODO create listener events for number buttons
-
-//TODO create listener event for display? make it refresh whenever num, clear, or equal is pressed
-
-function add(num1, num2) {
-    return num1 + num2;
+function add(a, b) {
+    return a + b;
 }
 
-function subtract(num1, num2) {
-    return num1 - num2;
+function subtract(a, b) {
+    return a - b;
 }
 
-function multiply(num1, num2) {
-    return num1 * num2;
+function multiply(a, b) {
+    return a * b;
 }
 
-function divide(num1, num2) {
-    return num1 / num2;
+function divide(a, b) {
+    return a / b;
 }
 
-function operate(operator, num1, num2) {
-    var n1 = Number(num1)
-    var n2 = Number(num2)
+function operate(term, n1, n2) {
+    var nm1 = parseInt(n1)
+    var nm2 = parseInt(n2)
 
-    if (operator == "/") {
-        return divide(n1, n2);
-    } else if (operator == "*") {
-        return multiply(n1, n2);
-    } else if (operator == "-") {
-        return subtract(n1, n2);
-    } else if (operator == "+") {
-        return add(n1, n2)
+    if (term == "/") {
+        return divide(nm1, nm2);
+    } else if (term == "*") {
+        return multiply(nm1, nm2);
+    } else if (term == "-") {
+        return subtract(nm1, nm2);
+    } else if (term == "+") {
+        return add(nm1, nm2)
     }
     return null;
 }
 
 function solve() {
+    num2 = currNumber
     let result = operate(operator, num1, num2);
-    clear();
     //TODO num1 = CONVERT STRING TO INT!!!
-    return result;
+    let asString = result.toString()
+    //TODO need to fix? should be using currNumber variable, and change display to the result instead?
+    currNumber = asString
+    refreshDisplay();
+    firstTerm = true
+    num1 = ''
+    num2 = ''
+    operator = null
+    currNumber = '0'
 }
 
 //on button click, one of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], update display with new number.
