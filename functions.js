@@ -42,6 +42,9 @@ function operatorPressed(oper) {
     firstTerm = false
 }
 
+clearButton.addEventListener('click', clear)
+
+/* Resets global variables back to their original values, clears all values for new computations */
 function clear() {
     num1 = ''
     num2 = ''
@@ -54,8 +57,6 @@ function clear() {
 function refreshDisplay() {
     display.innerText = currNumber
 }
-
-clearButton.addEventListener('click', clear)
 
 equalButton.addEventListener('click', solve)
 
